@@ -1,0 +1,87 @@
+/*字型對照 http://www.moonlit.me/%E4%B8%AD%E6%96%87%E5%AD%97%E9%AB%94%E8%8B%B1%E6%96%87%E5%90%8D%E7%A8%B1%E6%AF%94%E5%B0%8D-1631.html */
+
+
+#content {
+    font-family: verdana,微軟正黑體,華文黑體;
+    width: 960px;
+    background-color: #FFFFFF;
+    margin: 0 auto;
+    /*置中 http://www.flycan.com/article/css/css-div-position-center-1562.html */
+}
+
+body {
+    /* 整體背景 */
+    width: 960px;
+    background-color: #FFFFFF;
+    margin:0 auto; /* 上下邊界為0，左右水平置中 */
+}
+
+h1 {
+    font-size: 1.2cm;
+    background-color: #000000;
+    text-align: center;
+    font-family: 微軟正黑體;
+    color: #00BFFF;
+}
+
+h2 {
+    /*margin-bottom: 30px;*/
+    font-family: 微軟正黑體;
+    color: #00BFFF;
+}
+
+h4 {
+    font-family: verdana,標楷體,華文楷體;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+#myInfo {
+    width: 240px;
+    margin-top: 30px;
+    float: left;    /*浮動排列 http://www.flycan.com/article/css/css-float-442.html */
+}
+
+#aboutMe {
+    margin-left: 240px;
+    margin-top: 30px;
+    border-left: 20px solid #CCCCFF;
+    padding-left: 40px;
+
+}
+
+.infoTitle {
+    width: 70px;
+    float: left;
+}
+
+.infoContent {
+    margin-bottom: 10px;
+}
+
+dl {
+    font-family: Time New Roman,仿宋,華文宋體;
+    color: #9933FF;
+    font-size: 14px;
+}
+
+/*設定當滑鼠蓋在連接上面時，該連接的樣式。*/
+a:hover {
+    color: #990066;
+}
+
+li a {
+    font-family: Georgia,細明體,華文細黑;
+    color: #990066;
+    font-weight: bold;
+}
+
+#preferWeb {
+    list-style-type: none;
+    /*CSS中去掉li前面的圓點*/
+}
+
+em, strong {
+    font-size: 18px;
+}
