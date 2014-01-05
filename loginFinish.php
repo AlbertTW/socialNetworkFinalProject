@@ -24,7 +24,7 @@
         $Friday = "0,0,0";
         $Saturday = "0,0,0";
         $Sunday = "0,0,0";
-        $mysqli = new mysqli("localhost", "joyball", "bmuLb6z4fGQvAr2f", "JiuBall");
+        $mysqli = new mysqli("xxxxxxx", "xxxxxxx", "xxxxxxx", "xxxxxxx");
         // 主機, 帳號, 密碼, 資料庫名稱
         //==========將註冊資料存進資料庫
         if (!$place && !$userID && !$userNAME) { // 必須欄位
