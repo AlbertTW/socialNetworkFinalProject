@@ -32,7 +32,7 @@
         } else if (($place && $userID && $userNAME) != NULL) {
             $input_query = "INSERT INTO `Account` (`userID` , `userNAME` , `place`, `ball`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`) VALUES ";
             //==========處理喜好球類
-            for ($i = 0 ; $i < count($ball) ; $i++ ) { //使用者勾選幾種球(count)
+            for ($i = 0; $i < count($ball); $i++) { //使用者勾選幾種球(count)
                 if ($ball[$i] == "PingPong") {
                     $ball_like[0] = 1;
                 } else if ($ball[$i] == "Basketball") {
@@ -45,54 +45,54 @@
             }
             //==========處理常活動時段
             $j = 1;
-            for ( $i = 0 ; $i < count($timeslot) ; $i++ ) { //使用者勾選幾個時段(count)
-                for ( ; $j <= 21 ; $j++) { // 總共21個時段
-                    if ($timeslot[$i] == $j ) { // 找到有勾選的時段,開始暴力法塞資料
-                        if ( $j == 1 ) {
+            for ($i = 0; $i < count($timeslot); $i++) { //使用者勾選幾個時段(count)
+                for (; $j <= 21; $j++) { // 總共21個時段
+                    if ($timeslot[$i] == $j) { // 找到有勾選的時段,開始暴力法塞資料
+                        if ($j == 1) {
                             $Monday[0] = 1;
-                        } else if ( $j == 8 ) {
+                        } else if ($j == 8) {
                             $Monday[2] = 1;
-                        } else if ( $j == 15 ) {
+                        } else if ($j == 15) {
                             $Monday[4] = 1;
-                                } else if ( $j == 2 ) {
-                                    $Tuesday[0] = 1;
-                                } else if ( $j == 9 ) {
-                                    $Tuesday[2] = 1;
-                                } else if ( $j == 16 ) {
-                                    $Tuesday[4] = 1;
-                                        } else if ( $j == 3 ) {
-                                            $Wednesday[0] = 1;
-                                        } else if ( $j == 10 ) {
-                                            $Wednesday[2] = 1;
-                                        } else if ( $j == 17 ) {
-                                            $Wednesday[4] = 1;
-                                            } else if ( $j == 4 ) {
-                                                $Thursday[0] = 1;
-                                            } else if ( $j == 11 ) {
-                                                $Thursday[2] = 1;
-                                            } else if ( $j == 18 ) {
-                                                $Thursday[4] = 1;
-                                                } else if ( $j == 5 ) {
-                                                    $Friday[0] = 1;
-                                                } else if ( $j == 12 ) {
-                                                    $Friday[2] = 1;
-                                                } else if ( $j == 19 ) {
-                                                    $Friday[4] = 1;
-                                                    } else if ( $j == 6 ) {
-                                                        $Saturday[0] = 1;
-                                                    } else if ( $j == 13 ) {
-                                                        $Saturday[2] = 1;
-                                                    } else if ( $j == 20 ) {
-                                                        $Saturday[4] = 1;
-                                                        } else if ( $j == 7 ) {
-                                                            $Sunday[0] = 1;
-                                                        } else if ( $j == 14 ) {
-                                                            $Sunday[2] = 1;
-                                                        } else if ( $j == 21 ) {
-                                                            $Sunday[4] = 1;
-                                                        }
+                        } else if ($j == 2) {
+                            $Tuesday[0] = 1;
+                        } else if ($j == 9) {
+                            $Tuesday[2] = 1;
+                        } else if ($j == 16) {
+                            $Tuesday[4] = 1;
+                        } else if ($j == 3) {
+                            $Wednesday[0] = 1;
+                        } else if ($j == 10) {
+                            $Wednesday[2] = 1;
+                        } else if ($j == 17) {
+                            $Wednesday[4] = 1;
+                        } else if ($j == 4) {
+                            $Thursday[0] = 1;
+                        } else if ($j == 11) {
+                            $Thursday[2] = 1;
+                        } else if ($j == 18) {
+                            $Thursday[4] = 1;
+                        } else if ($j == 5) {
+                            $Friday[0] = 1;
+                        } else if ($j == 12) {
+                            $Friday[2] = 1;
+                        } else if ($j == 19) {
+                            $Friday[4] = 1;
+                        } else if ($j == 6) {
+                            $Saturday[0] = 1;
+                        } else if ($j == 13) {
+                            $Saturday[2] = 1;
+                        } else if ($j == 20) {
+                            $Saturday[4] = 1;
+                        } else if ($j == 7) {
+                            $Sunday[0] = 1;
+                        } else if ($j == 14) {
+                            $Sunday[2] = 1;
+                        } else if ($j == 21) {
+                            $Sunday[4] = 1;
+                        }
                         break;
-                    } 
+                    }
                 }
             }
             //==========把資料放進query
@@ -117,9 +117,19 @@
             $return = $mysqli->query($input_query);
 
             if ($return == 1) {
-                echo "<br>註冊成功!!<br>";
+                //echo "<br>註冊成功!!<br>";
+                ?>
+                <script>
+                    alert( "註冊成功!!" );
+                </script>
+                <?php
             } else {
-                echo "<br>您已經註冊過囉!!<br>";
+                ?>
+                <script>
+                    alert( "註冊失敗!!" );
+                </script>
+                <?php
+                //echo "<br>您已經註冊過囉!!<br>";
                 //echo "Errormessage: " . $mysqli->error;
             }
         }
@@ -127,22 +137,22 @@
         $mysqli->close();
         //==========close connection
         /* // 測試
-        echo "ball:" . $ball . "<br>";
-        echo "ball:" . $ball[0] . "<br>";
-        echo "place:" . $place . "<br>";
-        echo "timeslot:" . $timeslot . "<br>";
+          echo "ball:" . $ball . "<br>";
+          echo "ball:" . $ball[0] . "<br>";
+          echo "place:" . $place . "<br>";
+          echo "timeslot:" . $timeslot . "<br>";
 
-        echo "ball: <br>";
-        print_r($ball);
-        echo "<br>";
-        echo "place: " . $place . " <br>";
-        echo "timeslot: <br>";
-        print_r($timeslot);
-        echo "<br>";
+          echo "ball: <br>";
+          print_r($ball);
+          echo "<br>";
+          echo "place: " . $place . " <br>";
+          echo "timeslot: <br>";
+          print_r($timeslot);
+          echo "<br>";
 
-        echo "userID:" . $userID . "<br>";
-        echo "userNAME:" . $userNAME . "<br>";
-        */
+          echo "userID:" . $userID . "<br>";
+          echo "userNAME:" . $userNAME . "<br>";
+         */
         //==========將註冊資料顯示於網頁
         echo "<div id='userInfo'>";
         echo "<img src='https://graph.facebook.com/" . $userID . "/picture?type=large'> <br>";
