@@ -4,8 +4,8 @@ include '../src/facebook.php';
 
 // Create our Application instance (replace this with your appId and secret).
 $facebook = new Facebook(array(
-  'appId'  => '406720666028542',
-  'secret' => '86375d14b20fb6328c3adf36bd92e21f',
+  'appId'  => 'XXXXXXXXXXXXXXXXX',
+  'secret' => 'XXXXXXXXXXXXXXXXXXXXXXX',
 ));
 
 // Get User ID
@@ -41,8 +41,8 @@ if ($user) {
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="http://www.cs.nccu.edu.tw/~s99102/fb-js-codelab/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="http://www.cs.nccu.edu.tw/~s99102/fb-js-codelab/css/final.css" rel="stylesheet" media="screen">
+<link href="http://arwen.cs.nccu.edu.tw/~stanley10603/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="http://arwen.cs.nccu.edu.tw/~stanley10603/css/final.css" rel="stylesheet" media="screen">
 
 	<!-- include JQuery -->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -55,7 +55,13 @@ if ($user) {
 </head>
 
 <body>
-
+		<div id='blackBar'> <!--所有頁面頂端的bar-->
+                    <div align='center'>
+                    <a id="title" href="index.html">回首頁</a>
+                    </div>
+		</div>
+<div id='substance' class="content_font">
+		<h1>搜尋結果</h1>
 	<?php
 
 		$ball = $_POST[ball];
@@ -123,7 +129,8 @@ if ($user) {
 		echo "<div id='chooseTime'>";
 	
 			echo "選擇的時段: <br>";
-			echo "<table cellpadding='20' border='1'>";
+                        echo "<div class='table-responsive'>";
+			echo "<table cellpadding='20' border='2' class='table'>";
 			echo "<tbody>";
 				
 			$k = 0;
@@ -167,6 +174,7 @@ if ($user) {
 			
 			echo "</tbody>";
 			echo "</table>";
+                        echo "</div>";
 			echo "<br><br>";
 		echo "</div>";
 		
@@ -184,16 +192,16 @@ if ($user) {
 */
 	?>
 	
-	<input type='button' name='backBtn' id='backBtn' value='回首頁' onclick='javascript:location.href="index_1.html"' /> <br>
 	<!-- 直接PO文到FB: FB.ui() -->
-	<input type='button' name='fbFeed' id='fbFeed' value='FB PO文' onclick='fbUI_feed()' />
-	
+	<input type='button' name='fbFeed' id='fbFeed' class="btn btn-default btn-lg" value='FB PO文' onclick='fbUI_feed()' />
+	<br>
 	<?php
 		echo "<div id='chooseTime'>";
 	
 			echo "可能球友清單: <br>";
 //			echo "<table cellpadding='20' border='1'>";
 //			echo "<tbody>";
+						
 			
 			$tableNum = 1;
 			for ( $i=1;$i<count($allfriend);$i++ )
@@ -201,7 +209,7 @@ if ($user) {
 			
 				if ( $i%10==1 )	//餘數為1時 換table
 				{
-					echo "<table cellpadding='20' border='1' id='showFriend_".$tableNum."' class='resultTable'>";
+					echo "<table cellpadding='20' border='2' id='showFriend_".$tableNum."' class='resultTable'>";
 					echo "<tbody>";
 				}
 			
@@ -222,15 +230,54 @@ if ($user) {
 					echo "</td>";
 					
 					echo "<td>";
-						echo "<input type='button' name='fbMessage' class='SendToUser' value='私訊他' onclick='fbUI_message(".$strUid.")' />";
+						echo "<input type='button' name='fbMessage' class='btn btn-default btn-lg' value='私訊他' onclick='fbUI_message(".$strUid.")' />";
 					echo "</td>";
+
+					
+					//-----------------------------
+					if ( $i%10==1 )
+					{
+						if ((count($allfriend)-(($tableNum-1)*10))<10)
+						{
+							if ( (count($allfriend)-1)%10==1 || (count($allfriend)-1)%10==2 )
+								echo "<td rowspan='1'>&nbsp</td>";
+							else if ( (count($allfriend)-1)%10==3 || (count($allfriend)-1)%10==4)
+								echo "<td rowspan='2'>&nbsp</td>";
+							else if ( (count($allfriend)-1)%10==5 || (count($allfriend)-1)%10==6)
+								echo "<td rowspan='3'>&nbsp</td>";
+							else if ( (count($allfriend)-1)%10==7 || (count($allfriend)-1)%10==8)
+								echo "<td rowspan='4'>&nbsp</td>";
+						}
+						else
+							echo "<td rowspan='5'>&nbsp</td>";
+					}
+					
+					$i = $i+1;
+					$strUid = $allfriend[$i]['uid'];
+					$strName = $allfriend[$i]['name'];
+					
+					echo "<td>";
+						$strA = "https://graph.facebook.com/".$strUid."/picture?type=large";
+						echo "<div style='border:0px solid #999; overflow:auto;'>";
+						echo "<img src='".$strA."' width='100px' height='100px'>";
+						echo "</div>";
+					echo "</td>";
+					
+					echo "<td>";
+						echo "<a href='https://www.facebook.com/".$strUid."' target='_blank' >".$strName."</a>";
+					echo "</td>";
+					
+					echo "<td>";
+						echo "<input type='button' name='fbMessage' class='btn btn-default btn-lg' value='私訊他' onclick='fbUI_message(".$strUid.")' />";
+					echo "</td>";
+					
 				echo "</tr>";
 								
 				
 				if ( $i%10==0 )	//餘數為0時 換table + more
 				{
 					echo "<tr>";
-						echo "<td colspan='3' align='right'>";
+						echo "<td colspan='7' align='right'>";
 							echo "<h4 class='showMore' id='more_".$tableNum."' value='".$tableNum."'>More...</h4>";
 						echo "</td>";
 					echo "</tr>";
@@ -247,7 +294,7 @@ if ($user) {
 			if ( (count($allfriend)-1)%10!=0 )
 			{
 				echo "<tr>";
-					echo "<td colspan='3' align='right'>";
+					echo "<td colspan='7' align='right'>";
 						echo "<h4 class='finishMore' id='finishTable' value='".$tableNum."'>Finish...</h4>";
 					echo "</td>";
 				echo "</tr>";
@@ -272,7 +319,7 @@ if ($user) {
 	  window.fbAsyncInit = function() {
 		// init the FB JS SDK
 		FB.init({
-		  appId      : '406720666028542',                        // App ID from the app dashboard
+		  appId      : 'XXXXXXXXXX',                        // App ID from the app dashboard
 		  status     : true,                                 // Check Facebook Login status
 		  xfbml      : true,                                  // Look for social plugins on the page
 		  cookie     : true
@@ -298,7 +345,7 @@ if ($user) {
 				{
 					method: 'feed',
 					name: '揪球友',
-					link: 'http://www.cs.nccu.edu.tw/~g10209/fbTest/SNAfinal/examples/index_1.html',
+					link: 'http://arwen.cs.nccu.edu.tw/~stanley10603/index.html',
 					picture: 'http://fbrell.com/f8.jpg',
 					caption: 'Reference Documentation',
 					description: '揪球友：發佈訊息'
@@ -322,7 +369,7 @@ if ($user) {
 			FB.ui(
 				{
 					method: 'send',
-					link: 'http://www.cs.nccu.edu.tw/~g10209/fbTest/SNAfinal/examples/index_1.html',
+					link: 'http://arwen.cs.nccu.edu.tw/~stanley10603/index.html',
 					to:  UID,
 				}
 				
@@ -334,9 +381,6 @@ if ($user) {
 	</script>
 
 	
-
+</div>
 </body>
-
-
-
 </html>
