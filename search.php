@@ -3,8 +3,8 @@ include 'src/facebook.php';
 
 // Create our Application instance (replace this with your appId and secret).
 $facebook = new Facebook(array(
-    'appId' => '1438113799749811',
-    'secret' => 'd383c9de203bfb51a06d48a0b00f926d',
+    'appId' => 'XXXXXXXXXXXXXX',
+    'secret' => 'XXXXXXXXXXXXXXXXXXXXXXXXXXX',
         ));
 
 // Get User ID
