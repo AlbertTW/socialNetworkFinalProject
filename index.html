@@ -3,20 +3,24 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="http://arwen.cs.nccu.edu.tw/~stanley10603/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="http://arwen.cs.nccu.edu.tw/~stanley10603/css/final.css" rel="stylesheet" media="screen">
+        <link href="css/final.css" rel="stylesheet" media="screen">
         <title>揪球友</title>
     </head>
 
     <body>
-
-        <div id='login'>
-            <a href='login.php'><h2>註冊</h2></a>
-        </div>
-
-        <div id='login'>
-            <a href='search.php'><h2>揪球友</h2></a>
-        </div>
-
+	<div id="blackBar" class="content_font">
+            <div align='center'>
+                <a id="title" href="index.html">揪球友</a>
+            </div>
+            <div id="buttonBlank"   align='center'>
+                <button type="button" class="btn btn-default btn-lg" id="button1" onclick="javascript:location.href='login.php'">
+                    註冊
+                </button>
+                <button type="button" class="btn btn-default btn-lg"  id="button2" onclick="javascript:location.href='search.php'">
+                    揪球友
+                </button>
+            </div>
+	</div>
     </body>
 
 </html>
