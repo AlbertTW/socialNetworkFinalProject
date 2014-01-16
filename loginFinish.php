@@ -8,7 +8,13 @@
     </head>
 
     <body>
-
+		<div id='blackBar'> <!--所有頁面頂端的bar-->
+                    <div align='center'>
+                    <a id="title" href="index.html">回首頁</a>
+                    </div>
+		</div>
+<div id='substance' class="content_font">
+		<h1>註冊資料</h1>
         <?php
         $ball = $_POST[ball]; // 喜好球類
         $place = $_POST[place]; // 常活動地點
@@ -24,7 +30,7 @@
         $Friday = "0,0,0";
         $Saturday = "0,0,0";
         $Sunday = "0,0,0";
-        $mysqli = new mysqli("xxxxxxx", "xxxxxxx", "xxxxxxx", "xxxxxxx");
+        $mysqli = new mysqli("localhost", "XXXXXXXXXXX", "XXXXXXXXXXXXXXXXX", "XXXXXXXXXXXXX");
         // 主機, 帳號, 密碼, 資料庫名稱
         //==========將註冊資料存進資料庫
         if (!$place && !$userID && !$userNAME) { // 必須欄位
@@ -126,7 +132,7 @@
             } else {
                 ?>
                 <script>
-                    alert( "註冊失敗!!" );
+                    alert( "您已經註冊過囉!!" );
                 </script>
                 <?php
                 //echo "<br>您已經註冊過囉!!<br>";
@@ -189,7 +195,8 @@
         echo "<div id='chooseTime'>";
 
         echo "您常活動的時段: <br>";
-        echo "<table cellpadding='20' border='1'>";
+	echo "<div class='table-responsive'>";
+        echo "<table cellpadding='20' border='2' class='table'>";
         echo "<tbody>";
 
         $k = 0;
@@ -229,12 +236,12 @@
 
         echo "</tbody>";
         echo "</table>";
+	echo "</div>";
         echo "<br><br>";
         echo "</div>";
         ?>
 
-        <input type='button' name='backBtn' id='backBtn' value='回首頁' onclick='javascript:location.href = "index.html"' />
-
+	</div>
     </body>
 
 </html>
