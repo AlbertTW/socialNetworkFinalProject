@@ -3,8 +3,8 @@ include 'src/facebook.php';
 
 // Create our Application instance (replace this with your appId and secret).
 $facebook = new Facebook(array(
-    'appId' => 'XXXXXXXXX',
-    'secret' => 'XXXXXXXXXXXXXXXXXXXXXXXXXX',
+    'appId' => 'XXXXXXXXXXXXXXXXXXXX',
+    'secret' => 'XXXXXXXXXXXXXXXXXXXX',
         ));
 
 // Get User ID
@@ -78,6 +78,12 @@ if ($user) {
 
 
     <body>
+	<div id='blackBar'> <!--所有頁面頂端的bar-->
+            <div align='center'>
+            <a id="title" href="index.html">回首頁</a>
+            </div>
+	</div>
+<div id='substance' class="content_font">
         <h1>註冊</h1>
 <?php if ($user): ?>
             <a href="<?php echo $logoutUrl; ?>">Logout</a>
@@ -168,7 +174,8 @@ if ($user) {
 
         <!-- 選擇時段 複選 checkbox -->
         常活動時段(可複選)
-        <table cellpadding="20" border="1">
+        <div class="table-responsive">
+        <table cellpadding="20" border="2" class="table"> <!-- 20140115-->
             <tbody>
                 <tr>
                     <td></td>
@@ -212,13 +219,14 @@ if ($user) {
                 </tr>
             </tbody>
         </table>
+        </div>
         <br><br>
 
 
     <?php echo "<input type='hidden' id='userID' name='userID' value='" . $user_profile['id'] . "'>"; ?>
         <?php echo "<input type='hidden' id='userNAME' name='userNAME' value='" . $user_profile['name'] . "'>"; ?>	
 
-        <input type="submit" name="sendBtn" id="sendBtn" value="確認送出" />
+        <input type="submit" name="sendBtn" id="sendBtn" class="btn btn-default btn-lg" value="確認送出" />
 
     </form>
 
@@ -243,6 +251,6 @@ if ($user) {
 <img src="https://graph.facebook.com/naitik/picture">
 <?php //echo $naitik['name'];  ?>
 -->
-
+</div>
 </body>
 </html>
